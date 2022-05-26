@@ -10,12 +10,11 @@ app.get("/", (req, res, next) => {
 });
 
 async function main() {
+        const URI = "mongodb+srv://USER:PASSWORD@cluster0.06ptj.mongodb.net/?retryWrites=true&w=majority";
     const mongo_client = new MongoClient(URI);
     try {
         await mongo_client.connect();
-    
         await listDatabases(mongo_client);
-     
     } catch (err) {
         console.error(err);
     }
@@ -36,32 +35,3 @@ main().catch(console.error);
 
 
 app.listen(PORT);
-
-
-
-
-/*
-const express  = require("express");
-const app      = express();
-const mongoose = require("mongoose");
-require("dotenv/config");
-
-const PORT = 8080;
-
-
-app.get("/", (req, res, next) => {
-    res.send("🏡 home");
-});
-
-// const PW  = "";
-// Connect to MongoDB
-// const connection_str = `mongodb+srv://kenny:${PW}@cluster0.06ptj.mongodb.net/?retryWrites=true&w=majority`;
-mongoose.connect(
-    process.env.DB_CONNECTION,
-    { useNewUrlParser: true },
-    () => console.log("Connected to MongoDB!")
-);
-
-
-app.listen(PORT);
-*/
